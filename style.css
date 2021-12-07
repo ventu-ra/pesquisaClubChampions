@@ -51,5 +51,13 @@ input{
   color: white;
   text-decoration: none;
 }
+img{
+  width: 40%;
+  text-align: left;
+  position: fixed;
+}
+footer{
+  margin: 0;
+}
 
 
