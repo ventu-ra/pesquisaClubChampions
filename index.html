@@ -16,7 +16,8 @@
 
       <main id="lista">
         <h2 id="time"></h2>
-        <p id="link"></p>
+
+        <ul id="link"></ul>
       </main>
 
       <form>
@@ -28,7 +29,9 @@
             id="Pesquisar"
             placeholder="Pesquise o seu clube"
             required
+            list="listaClub"
           />
+          <datalist id="listaClub"> </datalist>
         </div>
         <input type="button" id="button" value="Confirmar" />
       </form>
