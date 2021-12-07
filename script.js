@@ -22,16 +22,18 @@ function pegarDados() {
       if (clube == dados[i].time) {
         time.innerHTML = dados[i].time + " " + dados[i].país;
         link.innerHTML = dados[i].link;
-
-        // var a = document.createElement("a");
-
-        // a.href = dados[i].link;
-        // li.appendChild(a);
-        // lista.appendChild(a);
-        return
+        break;
+      }
+      if (clube != dados[i].time) {
+        time.innerHTML = "Clube não encontrado";
+        link.innerHTML = "";
+      }
+      if (clube == "") {
+        time.innerHTML = "Campo pesquisa em branco";
       }
     }
   });
+  input.value = "";
 }
 
 confirmar.addEventListener("click", pegarDados);
