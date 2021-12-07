@@ -2,7 +2,6 @@ const time = document.querySelector("#time");
 const link = document.querySelector("#link");
 const lista = document.querySelector("#lista");
 const confirmar = document.querySelector("#button");
-var DADOS = [];
 
 const url = "https://times-uefa.herokuapp.com/api/champions";
 
@@ -20,8 +19,16 @@ function pegarDados() {
   res.then(function (dados) {
     for (var i = 0; i < dados.length; i++) {
       if (clube == dados[i].time) {
-        time.innerHTML = dados[i].time + " " + dados[i].país;
-        link.innerHTML = dados[i].link;
+        time.textContent = dados[i].time + " " + dados[i].país;
+        // link.innerHTML = dados[i].link;
+
+        var a = document.createElement("a");
+        a.href = dados[i].link;
+        a.textContent = dados[i].link;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+
+        link.appendChild(a);
         break;
       }
       if (clube != dados[i].time) {
@@ -36,4 +43,28 @@ function pegarDados() {
   input.value = "";
 }
 
+// preenchimento automático
+function preencheListaClube() {
+  
+  var req = fetch(url);
+
+  var datalist = document.querySelector("#listaClub");
+
+  req
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (dados) {
+      // CLUBE.push(dados);
+      for (i = 0; i < dados.length; i++) {
+        
+        //criando elemento opção pra jogar dentro do datalist
+        var option = document.createElement("option");
+        option.textContent = dados[i].time;
+        datalist.appendChild(option);
+      }
+    });
+}
+
 confirmar.addEventListener("click", pegarDados);
+preencheListaClube();
